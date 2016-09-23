@@ -8,9 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.outi.easynews.MainActivity;
 import com.example.outi.easynews.R;
 
 import activity.BaseActivity;
+import util.IntentUtil;
+import util.ToastUtil;
 
 /**
  * Created by outi on 2016/9/22.
@@ -36,6 +39,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.login:
+                verify();
+                break;
+            default:    break;
         }
     }
 
@@ -43,10 +49,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         String account=accountEdit.getText().toString();
         String passward=passwardEdit.getText().toString();
         if(account.equals("admin")&&passward.equals("123456")){
-
+            IntentUtil.StartActivity(this,MainActivity.class);
         }else
         {
-
+            ToastUtil.ShowMessage(this,"账号或者密码错误");
         }
     }
 }
