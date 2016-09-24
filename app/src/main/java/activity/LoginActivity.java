@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    public void verify(){                   //验证账号和密码
+    public void verify(){                                            //验证账号和密码
         String account=accountEdit.getText().toString();
         String passward=passwardEdit.getText().toString();
         if(account.equals("admin")&&passward.equals("123456")){
