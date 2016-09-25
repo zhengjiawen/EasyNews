@@ -30,12 +30,12 @@ import util.ToastUtil;
 public class Dbutil{
 
     private DatabaseHelper dbhelper;
-    private SQLiteDatabase db;
+
     private List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
 
     public Dbutil(Context context) {
         dbhelper=new DatabaseHelper(context,"EasyNews",1);
-        db=dbhelper.getWritableDatabase();
+       // db=dbhelper.getWritableDatabase();
         init();
     }
 
@@ -46,6 +46,7 @@ public class Dbutil{
     }
 
     public List<Map<String,Object>> Query(int targetType){
+        SQLiteDatabase db=dbhelper.getWritableDatabase();
         Cursor cursor=db.query("news",null,null,null,null,null,null);
         Map<String,Object> listNew= new HashMap<String,Object>();
         if(cursor.moveToFirst()){
@@ -68,6 +69,7 @@ public class Dbutil{
 
     //重载一个不传入参数时全部查询的函数
     public List<Map<String,Object>> Query(){
+        SQLiteDatabase db=dbhelper.getWritableDatabase();
         Cursor cursor=db.query("news",null,null,null,null,null,null);
         Map<String,Object> listNew= new HashMap<String,Object>();
         if(cursor.moveToFirst()){
@@ -88,6 +90,7 @@ public class Dbutil{
 
 
     private void init(){
+        SQLiteDatabase db=dbhelper.getWritableDatabase();
         db.insert("news",null,Values.setAndgetValues(1,"社会新闻","9月24日","电子科大获捐10.3亿"));
       //  Values.Clear();
         db.insert("news",null,Values.setAndgetValues(1,"社会新闻2","9月24日","电子科大获60周年校庆"));
