@@ -24,7 +24,8 @@ import util.ToastUtil;
 public class ShowNewsActivity extends BaseActivity{
 
     private List<Map<String,Object>> listNews;
-    private Dbutil db;
+    private   Dbutil db;
+    private ListView list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,9 +34,9 @@ public class ShowNewsActivity extends BaseActivity{
         db=new Dbutil(this);
         setListNews();
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
-        ListView list =(ListView)findViewById(R.id.listnews);
+        list =(ListView)findViewById(R.id.listnews);
         list.setAdapter(simpleAdapter);
-        db.DbDestroy();
+
     }
 
     @Override
@@ -48,13 +49,13 @@ public class ShowNewsActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.add_news:
-//                Intent intent=new Intent(this,AddNewActivity.class);
-//                this.startActivity(intent);
                 IntentUtil.StartActivity(this,AddNewActivity.class);
                 break;
-            case R.id.exit:
-                onDestroy();
+            case R.id.exit: {
+                list.setAdapter(null);
+                finish();
                 break;
+            }
                 default:
                     break;
         }
@@ -64,6 +65,7 @@ public class ShowNewsActivity extends BaseActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        db.DbDestroy();
     }
 
     protected void setListNews(int type){

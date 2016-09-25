@@ -35,7 +35,7 @@ public class Dbutil{
     private static List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
 
     public Dbutil(Context context) {
-        dbhelper=new DatabaseHelper(context,"EasyNews",1);
+        dbhelper=new DatabaseHelper(context,"EasyNews.db",1);
         db=dbhelper.getWritableDatabase();
         init();                                                     //初始化
     }
