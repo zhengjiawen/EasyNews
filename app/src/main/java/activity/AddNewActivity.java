@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 
 import com.example.outi.easynews.R;
 
+import util.Dbutil;
+
 /**
  * Created by outi on 2016/9/25.
  */
@@ -21,14 +23,12 @@ public class AddNewActivity extends AppCompatActivity implements RadioGroup.OnCh
     private Button update;
     private RadioGroup type;
     private int tyoeId;
+    private Dbutil dbutil;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_details);
-        String title=titleEdit.getText().toString();
-        String time=timeEdit.getText().toString();
-        String content=contentEdit.getText().toString();
         type=(RadioGroup)findViewById(R.id.type);
         type.setOnCheckedChangeListener(this);
         update=(Button)findViewById(R.id.update);
@@ -59,6 +59,11 @@ public class AddNewActivity extends AppCompatActivity implements RadioGroup.OnCh
 
     @Override
     public void onClick(View v) {
-
+        String title=titleEdit.getText().toString();
+        String time=timeEdit.getText().toString();
+        String content=contentEdit.getText().toString();
+        dbutil=new Dbutil(this);
+        dbutil.Insert(tyoeId,title,time,content);
+        dbutil.DbDestroy();
     }
 }

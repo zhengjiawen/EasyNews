@@ -9,10 +9,9 @@ import android.content.Intent;
  */
 /*跳转活动的工具*/
 public class IntentUtil {
-    private static Intent intent;
 
-    public static void StartActivity(Activity currentActivity, Class targetActivity){
-        intent=new Intent(currentActivity,targetActivity);
-        currentActivity.startActivity(intent);
+    public static void StartActivity(Context context, Class targetActivity){
+        Intent intent=new Intent(context,targetActivity);
+        context.startActivity(intent);
     }
 }

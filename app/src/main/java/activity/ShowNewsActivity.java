@@ -1,5 +1,6 @@
 package activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 import util.Dbutil;
 import util.IntentUtil;
+import util.ToastUtil;
 
 /**
  * Created by outi on 2016/9/25.
@@ -37,9 +39,17 @@ public class ShowNewsActivity extends BaseActivity{
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.add_news:
+//                Intent intent=new Intent(this,AddNewActivity.class);
+//                this.startActivity(intent);
                 IntentUtil.StartActivity(this,AddNewActivity.class);
                 break;
             case R.id.exit:
