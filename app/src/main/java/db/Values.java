@@ -24,4 +24,8 @@ public class Values {
         return values;
     }
 
+    public static void Clear(){
+        values.clear();
+    }
+
 }

@@ -5,6 +5,8 @@
     <!--每个列表项的组件-->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/title"></TextView>
 
 </LinearLayout>

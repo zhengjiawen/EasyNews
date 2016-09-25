@@ -20,12 +20,14 @@ import util.Dbutil;
 public class ShowNewsActivity extends BaseActivity{
 
     private List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
-    private Dbutil db=new Dbutil(ShowNewsActivity.this);
+    private Dbutil db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_news);
+        db=new Dbutil(this);
+        setListNews();
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
         ListView list =(ListView)findViewById(R.id.listnews);
         list.setAdapter(simpleAdapter);
