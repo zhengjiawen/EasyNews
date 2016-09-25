@@ -2,6 +2,7 @@ package activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -30,6 +31,12 @@ public class ShowNewsActivity extends BaseActivity{
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
         ListView list =(ListView)findViewById(R.id.listnews);
         list.setAdapter(simpleAdapter);
+        db.DbDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
