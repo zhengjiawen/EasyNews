@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name="activity.ShowNewsActivity"></activity>
+        <activity android:name="activity.Test"></activity>
     </application>
 
 </manifest>

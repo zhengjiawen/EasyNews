@@ -46,7 +46,7 @@ public class Dbutil{
     }
 
     public List<Map<String,Object>> Query(int targetType){
-        Cursor cursor=db.query("EasyNews",null,null,null,null,null,null);
+        Cursor cursor=db.query("news",null,null,null,null,null,null);
         Map<String,Object> listNew= new HashMap<String,Object>();
         if(cursor.moveToFirst()){
             do{
@@ -68,7 +68,7 @@ public class Dbutil{
 
     //重载一个不传入参数时全部查询的函数
     public List<Map<String,Object>> Query(){
-        Cursor cursor=db.query("EasyNews",null,null,null,null,null,null);
+        Cursor cursor=db.query("news",null,null,null,null,null,null);
         Map<String,Object> listNew= new HashMap<String,Object>();
         if(cursor.moveToFirst()){
             do{
@@ -88,13 +88,13 @@ public class Dbutil{
 
 
     private void init(){
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(1,"社会新闻","9月24日","电子科大获捐10.3亿"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(1,"社会新闻2","9月24日","电子科大获60周年校庆"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(1,"社会新闻3","9月25日","全国人民喜迎油价上涨"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(2,"娱乐新闻","9月24日","洛天依假唱"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(2,"娱乐新闻2","9月26日","过气歌姬初音未来来华演唱会"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(3,"财经新闻","9月24日","全国房价崩盘"));
-        db.insert(dbhelper.getDatabaseName(),null,Values.setAndgetValues(4,"军事新闻","9月27日","我国成功收复台湾"));
+        db.insert("news",null, Values.setAndgetValues(1,"社会新闻","9月24日","电子科大获捐10.3亿"));
+        db.insert("news",null,Values.setAndgetValues(1,"社会新闻2","9月24日","电子科大获60周年校庆"));
+        db.insert("news",null,Values.setAndgetValues(1,"社会新闻3","9月25日","全国人民喜迎油价上涨"));
+        db.insert("news",null,Values.setAndgetValues(2,"娱乐新闻","9月24日","洛天依假唱"));
+        db.insert("news",null,Values.setAndgetValues(2,"娱乐新闻2","9月26日","过气歌姬初音未来来华演唱会"));
+        db.insert("news",null,Values.setAndgetValues(3,"财经新闻","9月24日","全国房价崩盘"));
+        db.insert("news",null,Values.setAndgetValues(4,"军事新闻","9月27日","我国成功收复台湾"));
     }
 
 

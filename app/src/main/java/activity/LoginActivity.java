@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String account=accountEdit.getText().toString();
         String passward=passwardEdit.getText().toString();
         if(account.equals("admin")&&passward.equals("123456")){
-            IntentUtil.StartActivity(this, ShowNewsActivity.class);      //跳转到测试界面
+            IntentUtil.StartActivity(this, Test.class);      //跳转到测试界面
         }else
         {
             ToastUtil.ShowMessage(this,"账号或者密码错误");
