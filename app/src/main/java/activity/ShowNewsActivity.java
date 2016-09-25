@@ -3,6 +3,7 @@ package activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import util.Dbutil;
+import util.IntentUtil;
 
 /**
  * Created by outi on 2016/9/25.
@@ -35,8 +37,18 @@ public class ShowNewsActivity extends BaseActivity{
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add_news:
+                IntentUtil.StartActivity(this,AddNewActivity.class);
+                break;
+            case R.id.exit:
+                onDestroy();
+                break;
+                default:
+                    break;
+        }
+        return true;
     }
 
     @Override

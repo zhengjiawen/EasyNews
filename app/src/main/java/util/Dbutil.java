@@ -46,6 +46,10 @@ public class Dbutil{
         }
     }
 
+    public void Insert(int type,String title,String time,String content){
+        db.insert("news",null,Values.setAndgetValues(type,title,time,content));
+    }
+
     public List<Map<String,Object>> Query(int targetType){
         Cursor cursor=db.query("news",null,null,null,null,null,null);
 

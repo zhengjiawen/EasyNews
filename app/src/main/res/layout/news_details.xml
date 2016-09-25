@@ -36,10 +36,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="194dp"
-        android:lines="10"
         android:id="@+id/inputcontent"
         android:hint="输入新闻内容"
-        android:gravity="fill_horizontal"/>
+        android:gravity="fill_horizontal"
+        android:singleLine="false"
+        android:scrollHorizontally="true"
+        android:maxLines="16"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
