@@ -16,14 +16,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 +"title text, "                                             //3是财经新闻
                 +"time text, "                                              //4是军事新闻
                 +"content text)";
-
+        private Context mcontext;
     public DatabaseHelper(Context context,String name,int version){
         super(context,name,null,version);
+        mcontext=context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_SQL);
+        ToastUtil.ShowMessage(mcontext,"succeed");
+
     }
 
     @Override

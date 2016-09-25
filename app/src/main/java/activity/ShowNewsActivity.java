@@ -8,18 +8,17 @@ import android.widget.SimpleAdapter;
 import com.example.outi.easynews.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import util.Dbutil;
 
 /**
- * Created by outi on 2016/9/24.
+ * Created by outi on 2016/9/25.
  */
 public class ShowNewsActivity extends BaseActivity{
 
-    private List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
+    private List<Map<String,Object>> listNews;
     private Dbutil db;
 
     @Override

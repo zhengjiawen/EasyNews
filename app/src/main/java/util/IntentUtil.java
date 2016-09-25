@@ -7,6 +7,7 @@ import android.content.Intent;
 /**
  * Created by outi on 2016/9/23.
  */
+/*跳转活动的工具*/
 public class IntentUtil {
     private static Intent intent;
 

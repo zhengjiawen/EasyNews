@@ -27,16 +27,17 @@ import util.ToastUtil;
 /**
  * Created by outi on 2016/9/24.
  */
+/*数据库操作*/
 public class Dbutil{
 
     private DatabaseHelper dbhelper;
-
-    private List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
+    private SQLiteDatabase db;
+    private static List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
 
     public Dbutil(Context context) {
         dbhelper=new DatabaseHelper(context,"EasyNews",1);
-       // db=dbhelper.getWritableDatabase();
-        init();
+        db=dbhelper.getWritableDatabase();
+        init();                                                     //初始化
     }
 
     public void DbDestroy() {
@@ -46,13 +47,13 @@ public class Dbutil{
     }
 
     public List<Map<String,Object>> Query(int targetType){
-        SQLiteDatabase db=dbhelper.getWritableDatabase();
         Cursor cursor=db.query("news",null,null,null,null,null,null);
-        Map<String,Object> listNew= new HashMap<String,Object>();
+
         if(cursor.moveToFirst()){
             do{
                 int type=cursor.getInt(cursor.getColumnIndex("type"));
                 if(type==targetType){
+                    Map<String,Object> listNew= new HashMap<String,Object>();
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
                     String content=cursor.getString(cursor.getColumnIndex("content"));
@@ -69,12 +70,12 @@ public class Dbutil{
 
     //重载一个不传入参数时全部查询的函数
     public List<Map<String,Object>> Query(){
-        SQLiteDatabase db=dbhelper.getWritableDatabase();
         Cursor cursor=db.query("news",null,null,null,null,null,null);
-        Map<String,Object> listNew= new HashMap<String,Object>();
+
         if(cursor.moveToFirst()){
             do{
-                int type=cursor.getInt(cursor.getColumnIndex("type"));
+                    Map<String,Object> listNew= new HashMap<String,Object>();
+                    int type=cursor.getInt(cursor.getColumnIndex("type"));
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
                     String content=cursor.getString(cursor.getColumnIndex("content"));
@@ -89,22 +90,24 @@ public class Dbutil{
     }
 
 
-    private void init(){
-        SQLiteDatabase db=dbhelper.getWritableDatabase();
-        db.insert("news",null,Values.setAndgetValues(1,"社会新闻","9月24日","电子科大获捐10.3亿"));
-      //  Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(1,"社会新闻2","9月24日","电子科大获60周年校庆"));
-      //  Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(1,"社会新闻3","9月25日","全国人民喜迎油价上涨"));
-     //   Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(2,"娱乐新闻","9月24日","洛天依假唱"));
-     //   Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(2,"娱乐新闻2","9月26日","过气歌姬初音未来来华演唱会"));
-      //  Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(3,"财经新闻","9月24日","全国房价崩盘"));
-      //  Values.Clear();
-        db.insert("news",null,Values.setAndgetValues(4,"军事新闻","9月27日","我国成功收复台湾"));
-     //   Values.Clear();
+    public void init(){
+        Cursor cursor=db.query("news",null,null,null,null,null,null);                   //查询全部数据
+        if(cursor.getCount()==0) {                                                                //表中行数为0，未初始化时进行初始化
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻", "9月24日", "电子科大获捐10.3亿"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻2", "9月24日", "电子科大获60周年校庆"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻3", "9月25日", "全国人民喜迎油价上涨"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻", "9月24日", "洛天依假唱"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻2", "9月26日", "过气歌姬初音未来来华演唱会"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(3, "财经新闻", "9月24日", "全国房价崩盘"));
+            Values.Clear();
+            db.insert("news", null, Values.setAndgetValues(4, "军事新闻", "9月27日", "我国成功收复台湾"));
+            Values.Clear();
+        }
     }
 
 

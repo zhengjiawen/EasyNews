@@ -6,6 +6,7 @@ import android.widget.Toast;
 /**
  * Created by outi on 2016/9/23.
  */
+/*显示工具*/
 public class ToastUtil {
     private static Toast toast=null;
     public static void ShowMessage(Context context, String text){
