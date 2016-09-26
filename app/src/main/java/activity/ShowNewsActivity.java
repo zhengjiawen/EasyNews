@@ -36,7 +36,6 @@ public class ShowNewsActivity extends BaseActivity{
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
         list =(ListView)findViewById(R.id.listnews);
         list.setAdapter(simpleAdapter);
-
     }
 
     @Override
