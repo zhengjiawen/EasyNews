@@ -38,7 +38,6 @@ public class AddNewActivity extends AppCompatActivity implements RadioGroup.OnCh
         type.setOnCheckedChangeListener(this);
         update=(Button)findViewById(R.id.update);
         update.setOnClickListener(this);
-
     }
 
 

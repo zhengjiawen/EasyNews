@@ -22,7 +22,6 @@ import util.ToastUtil;
  * Created by outi on 2016/9/25.
  */
 public class ShowNewsActivity extends BaseActivity{
-
     private List<Map<String,Object>> listNews;
     private   Dbutil db;
     private ListView list;

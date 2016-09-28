@@ -32,7 +32,7 @@ public class Dbutil{
 
     private DatabaseHelper dbhelper;
     private SQLiteDatabase db;
-    private static List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
+    private  List<Map<String,Object>> listNews=new ArrayList<Map<String, Object>>();
 
     public Dbutil(Context context) {
         dbhelper=new DatabaseHelper(context,"EasyNews.db",1);
@@ -52,11 +52,10 @@ public class Dbutil{
 
     public List<Map<String,Object>> Query(int targetType){
         Cursor cursor=db.query("news",null,null,null,null,null,null);
-
         if(cursor.moveToFirst()){
             do{
                 int type=cursor.getInt(cursor.getColumnIndex("type"));
-                if(type==targetType){
+                if(type==targetType||targetType==-1){
                     Map<String,Object> listNew= new HashMap<String,Object>();
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
@@ -74,23 +73,7 @@ public class Dbutil{
 
     //重载一个不传入参数时全部查询的函数
     public List<Map<String,Object>> Query(){
-        Cursor cursor=db.query("news",null,null,null,null,null,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                    Map<String,Object> listNew= new HashMap<String,Object>();
-                    int type=cursor.getInt(cursor.getColumnIndex("type"));
-                    String title=cursor.getString(cursor.getColumnIndex("title"));
-                    String time=cursor.getString(cursor.getColumnIndex("time"));
-                    String content=cursor.getString(cursor.getColumnIndex("content"));
-                    listNew.put("title",title);
-                    listNew.put("time",time);
-                    listNew.put("content",content);
-                    listNews.add(listNew);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        return listNews;
+        return Query(-1);
     }
 
 
