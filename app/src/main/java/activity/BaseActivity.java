@@ -12,4 +12,5 @@ import com.example.outi.easynews.R;
  */
 public class BaseActivity extends AppCompatActivity{
 
+
 }

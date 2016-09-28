@@ -55,15 +55,15 @@ public class Dbutil{
         if(cursor.moveToFirst()){
             do{
                 int type=cursor.getInt(cursor.getColumnIndex("type"));
-                if(type==targetType||targetType==-1){
-                    Map<String,Object> listNew= new HashMap<String,Object>();
+                if(type==targetType||targetType==-1){                       //-1时查询全部数据
+                    Map<String,Object> mapNew= new HashMap<String,Object>();
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
                     String content=cursor.getString(cursor.getColumnIndex("content"));
-                    listNew.put("title",title);
-                    listNew.put("time",time);
-                    listNew.put("content",content);
-                    listNews.add(listNew);
+                    mapNew.put("title",title);
+                    mapNew.put("time",time);
+                    mapNew.put("content",content);
+                    listNews.add(mapNew);
                 }
             }while (cursor.moveToNext());
         }
@@ -71,14 +71,9 @@ public class Dbutil{
         return listNews;
     }
 
-    //重载一个不传入参数时全部查询的函数
-    public List<Map<String,Object>> Query(){
-        return Query(-1);
-    }
-
 
     public void init(){
-        Cursor cursor=db.query("news",null,null,null,null,null,null);                   //查询全部数据
+        Cursor cursor=db.query("news",null,null,null,null,null,null);                            //查询全部数据
         if(cursor.getCount()==0) {                                                                //表中行数为0，未初始化时进行初始化
             db.insert("news", null, Values.setAndgetValues(1, "社会新闻", "9月24日", "电子科大获捐10.3亿"));
             Values.Clear();

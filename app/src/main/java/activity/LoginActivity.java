@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText accountEdit;
     private EditText passwardEdit;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void verify(){                                            //验证账号和密码
         String account=accountEdit.getText().toString();
         String passward=passwardEdit.getText().toString();
-        if(account.equals("admin")&&passward.equals("123456")){
+        if(account.equals("")&&passward.equals("")){                //输入账户密码
             IntentUtil.StartActivity(this, ShowNewsActivity.class);
         }else
         {
