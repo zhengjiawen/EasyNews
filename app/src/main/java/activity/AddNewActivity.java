@@ -2,7 +2,6 @@ package activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,14 +9,13 @@ import android.widget.RadioGroup;
 
 import com.example.outi.easynews.R;
 
-import db.DatabaseHelper;
 import util.Dbutil;
 import util.ToastUtil;
 
 /**
  * Created by outi on 2016/9/25.
  */
-public class AddNewActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener{
+public class AddNewActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener{
 
     private EditText titleEdit;
     private EditText timeEdit;
@@ -30,7 +28,7 @@ public class AddNewActivity extends AppCompatActivity implements RadioGroup.OnCh
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news_details);
+        setContentView(R.layout.add_news_details);
         titleEdit=(EditText)findViewById(R.id.inputtitle);
         timeEdit=(EditText)findViewById(R.id.inputdate);
         contentEdit=(EditText)findViewById(R.id.inputcontent);

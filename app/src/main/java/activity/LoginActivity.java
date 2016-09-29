@@ -16,7 +16,7 @@ import util.ToastUtil;
 /**
  * Created by outi on 2016/9/22.
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private Button login;
     private EditText accountEdit;

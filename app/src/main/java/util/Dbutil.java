@@ -56,13 +56,15 @@ public class Dbutil{
             do{
                 int type=cursor.getInt(cursor.getColumnIndex("type"));
                 if(type==targetType||targetType==-1){                       //-1时查询全部数据
-                    Map<String,Object> mapNew= new HashMap<String,Object>();
+                    HashMap<String,Object> mapNew= new HashMap<String,Object>();
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
                     String content=cursor.getString(cursor.getColumnIndex("content"));
+                    int id=cursor.getShort(cursor.getColumnIndex("id"));
                     mapNew.put("title",title);
                     mapNew.put("time",time);
                     mapNew.put("content",content);
+                    mapNew.put("id",id);
                     listNews.add(mapNew);
                 }
             }while (cursor.moveToNext());
@@ -71,23 +73,44 @@ public class Dbutil{
         return listNews;
     }
 
+    public Map<String ,Object> getNewsContent(int targetID){
+        Cursor cursor=db.query("news",null,null,null,null,null,null);
+        HashMap<String,Object> mapNew= null;
+        if(cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                if (id == targetID) {
+                    mapNew = new HashMap<String, Object>();
+                    String title = cursor.getString(cursor.getColumnIndex("title"));
+                    String time = cursor.getString(cursor.getColumnIndex("time"));
+                    String content = cursor.getString(cursor.getColumnIndex("content"));
+                    mapNew.put("title", title);
+                    mapNew.put("time", time);
+                    mapNew.put("content", content);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return mapNew;
+    }
 
     public void init(){
         Cursor cursor=db.query("news",null,null,null,null,null,null);                            //查询全部数据
         if(cursor.getCount()==0) {                                                                //表中行数为0，未初始化时进行初始化
-            db.insert("news", null, Values.setAndgetValues(1, "社会新闻", "9月24日", "电子科大获捐10.3亿"));
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻", "9.24", "电子科大获捐10.3亿"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(1, "社会新闻2", "9月24日", "电子科大获60周年校庆"));
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻2", "9.24", "电子科大获60周年校庆"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(1, "社会新闻3", "9月25日", "全国人民喜迎油价上涨"));
+            db.insert("news", null, Values.setAndgetValues(1, "社会新闻3", "9.25", "全国人民喜迎油价上涨"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻", "9月24日", "洛天依假唱"));
+            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻", "9.24", "洛天依假唱"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻2", "9月26日", "过气歌姬初音未来来华演唱会"));
+            db.insert("news", null, Values.setAndgetValues(2, "娱乐新闻2", "9.26", "过气歌姬初音未来来华演唱会"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(3, "财经新闻", "9月24日", "全国房价崩盘"));
+            db.insert("news", null, Values.setAndgetValues(3, "财经新闻", "9.24", "全国房价崩盘"));
             Values.Clear();
-            db.insert("news", null, Values.setAndgetValues(4, "军事新闻", "9月27日", "我国成功收复台湾"));
+            db.insert("news", null, Values.setAndgetValues(4, "军事新闻", "9.27", "我国成功收复台湾"));
             Values.Clear();
         }
     }

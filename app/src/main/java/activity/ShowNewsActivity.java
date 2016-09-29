@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -13,8 +14,10 @@ import android.widget.SimpleAdapter;
 import com.example.outi.easynews.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import util.Dbutil;
 import util.IntentUtil;
@@ -29,9 +32,6 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
     private ListView list;
     private Button hotnews;
     private Button societyNews;
-
-
-
     private Button entertainmentNews;
     private Button economicNews;
     private Button militaryNews;
@@ -57,8 +57,21 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
 
         //初始化为热点事件
         setListNews(-1);
-
+//        db=new Dbutil(this);
+//        listNews= db.Query(-1);
+//        SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
+//        list =(ListView)findViewById(R.id.listnews);
+//        list.setAdapter(simpleAdapter);
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                ToastUtil.ShowMessage(ShowNewsActivity.this,"succeed");
+//                Map<String, Object> news= listNews.get(position);
+//                IntentUtil.StartActivity(ShowNewsActivity.this,NewsContentActivity.class,(int)news.get("id"));
+//            }
+//        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,7 +87,7 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.exit: {
                 list.setAdapter(null);
-                finish();
+                ActivityCollector.finishAll();
                 break;
             }
                 default:
@@ -117,5 +130,12 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
         SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
         list =(ListView)findViewById(R.id.listnews);
         list.setAdapter(simpleAdapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, Object> news= listNews.get(position);
+                IntentUtil.StartActivity(ShowNewsActivity.this,NewsContentActivity.class,(int)news.get("id"));
+            }
+        });
     }
 }
