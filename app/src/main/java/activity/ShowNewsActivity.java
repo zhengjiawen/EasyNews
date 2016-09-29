@@ -2,7 +2,9 @@ package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,19 +59,6 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
 
         //初始化为热点事件
         setListNews(-1);
-//        db=new Dbutil(this);
-//        listNews= db.Query(-1);
-//        SimpleAdapter simpleAdapter=new SimpleAdapter(this,listNews,R.layout.simple_item, new String[]{"title"},new int[] {R.id.title});
-//        list =(ListView)findViewById(R.id.listnews);
-//        list.setAdapter(simpleAdapter);
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ToastUtil.ShowMessage(ShowNewsActivity.this,"succeed");
-//                Map<String, Object> news= listNews.get(position);
-//                IntentUtil.StartActivity(ShowNewsActivity.this,NewsContentActivity.class,(int)news.get("id"));
-//            }
-//        });
     }
 
 
@@ -123,6 +112,7 @@ public class ShowNewsActivity extends BaseActivity implements View.OnClickListen
             default:    break;
         }
     }
+
 
     public void setListNews(int type){
         db=new Dbutil(this);
