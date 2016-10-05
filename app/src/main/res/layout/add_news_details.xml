@@ -29,8 +29,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/inputdate"
-            android:inputType="date"/>
+            android:id="@+id/inputdate" />
          </TableRow>
     </TableLayout>
     <EditText

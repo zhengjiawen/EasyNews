@@ -55,7 +55,7 @@ public class Dbutil{
         if(cursor.moveToFirst()){
             do{
                 int type=cursor.getInt(cursor.getColumnIndex("type"));
-                if(type==targetType||targetType==-1){                       //-1时查询全部数据
+                if(type==targetType||targetType==0){                       //0时查询全部数据
                     HashMap<String,Object> mapNew= new HashMap<String,Object>();
                     String title=cursor.getString(cursor.getColumnIndex("title"));
                     String time=cursor.getString(cursor.getColumnIndex("time"));
